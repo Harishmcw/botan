@@ -12,7 +12,7 @@ permissions:
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, test_ci ]
   pull_request:
     branches: [ master ]
 
@@ -57,6 +57,22 @@ jobs:
           - target: static
             arch: x86
             host_os: windows-2022
+            compiler: clangcl
+          - target: shared
+            arch: arm64
+            host_os: windows-11-arm
+            compiler: msvc
+          - target: static
+            arch: arm64
+            host_os: windows-11-arm
+            compiler: msvc
+          - target: amalgamation
+            arch: arm64
+            host_os: windows-11-arm
+            compiler: msvc
+          - target: shared
+            arch: arm64
+            host_os: windows-11-arm
             compiler: clangcl
 
     runs-on: ${{ matrix.host_os }}
